@@ -1,5 +1,8 @@
 ﻿namespace BankIIS.API.Models
 {
+	/// <summary>
+	/// Represents changes to account balance, either deposits or withdrawals.
+	/// </summary>
 	public class BalanceChange
 	{
 		public int CustomerId { get; set; }
