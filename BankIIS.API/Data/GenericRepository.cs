@@ -1,20 +1,43 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel;
+using System.Threading.Tasks;
 
 namespace BankIIS.API.Data
 {
-	public class GenericRepository<TEntity>(BankDbContext context) where TEntity : class
+	public class GenericRepository<TEntity> where TEntity : class, IGenericRepository<TEntity>
 	{
-		private BankDbContext db = context;
+		private BankDbContext db = new BankDbContext(null);
 
-		public virtual List<TEntity> Get()
-		{
-			return db.Set<TEntity>().ToList();
-		}
+		//public virtual List<TEntity> Get()
+		//{
+		//	return db.Set<TEntity>().ToList();
+		//}
 
-		public TEntity Find(object id) 
-		{
-			return db.Set<TEntity>().Find(id);
-		}
+		//public virtual async IAsyncEnumerable<TEntity> Get()
+		//{
+		//	yield return db.Set<TEntity>().ToList();
+		//}
+
+
+		//public TEntity Find(object id) 
+		//{
+		//	return db.Set<TEntity>().Find(id);
+		//}
+
+		//public async Task<TEntity> Find(object id)
+		//{
+		//	try
+		//	{
+		//		return await db.Set<TEntity>().FirstOrDefaultAsync(te => te.Id == id);
+		//	}
+		//	catch (Exception ex)
+		//	{
+		//		throw new ApplicationException("An error occurred while fetching record details.");
+		//	}
+
+
+		//	return db.Set<TEntity>().Find(id);
+		//}
 
 		public void Add(TEntity entity)
 		{

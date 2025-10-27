@@ -13,6 +13,10 @@ builder.Services.AddOpenApi();
 builder.Services.AddDbContext<BankDbContext>(options => 
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+
+//Dependency injection 
+builder.Services.AddTransient<AccountRepository>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
