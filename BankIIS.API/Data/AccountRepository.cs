@@ -12,7 +12,6 @@ namespace BankIIS.API.Data
 
 
 		#region Custom Repo methods - deposit & withdraw
-
 		public async Task<BalanceChange> Deposit(int accountId, decimal depositAmount, int customerId)
 		{
 			var accountUpdate = await _context.Accounts.FindAsync(accountId);
@@ -32,7 +31,6 @@ namespace BankIIS.API.Data
 
 			return deposit;
 		}
-
 
 		public async Task<BalanceChange> Withdraw(int accountId, decimal withdrawAmount, int customerId)
 		{
@@ -56,8 +54,6 @@ namespace BankIIS.API.Data
 
 			return deposit;
 		}
-
-
 		#endregion
 
 
@@ -135,6 +131,27 @@ namespace BankIIS.API.Data
 			{
 				throw new ApplicationException("An error occurred while attempting to delete the record.");
 			}
+		}
+		#endregion
+
+		#region Dispose
+		private bool disposed = false;
+		protected virtual void Dispose(bool disposing)
+		{
+			if (!disposed)
+			{
+				if (disposing)
+				{
+					_context.Dispose();
+				}
+			}
+			this.disposed = true;
+		}
+
+		public void Dispose()
+		{
+			Dispose(true);
+			GC.SuppressFinalize(this);
 		}
 		#endregion
 

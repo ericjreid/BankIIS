@@ -7,7 +7,7 @@ namespace BankIIS.API.Data
 	public class BankDbContext(DbContextOptions<BankDbContext> options) : DbContext(options)
 	{
 		public DbSet<Customer> Customers => Set<Customer>();
-		public DbSet<Account> Accounts => Set<Account>();//TODO: ejr - consider changing to public DbSet<Account> Accounts {get; set;}
+		public DbSet<Account> Accounts => Set<Account>();
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
